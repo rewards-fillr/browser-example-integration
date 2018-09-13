@@ -1,4 +1,4 @@
-# Browser Extensions Sample For Library
+# Browser Example Integration
 
 ## Building
 
