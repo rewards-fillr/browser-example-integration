@@ -7,17 +7,18 @@
 - Set dev key and profile data on index.ts
 - Run build script (./build.sh)
 
+### Installation
+
+```bash
+$> npm install fillr-extension --registry https://api.bintray.com/npm/fillr/npm
+```
+
 ### Build
 
 ```bash
 $> ./build.sh
 ```
 
-### Installation
-
-```bash
-$> npm install fillr-extension --registry https://api.bintray.com/npm/fillr/npm
-```
 
 ### Usage
 
@@ -63,15 +64,15 @@ When you make your own extension, you should configure the following things on `
 ```  
 
 ### Error
-- When you get the following error, set your deve key with `new FillrController(devKey, profileData)`
+- When you get the following error, set your dev key with `new FillrController(devKey, profileData)`
 
 ```
-Uncaught Error: Pleas set your dev key!
+Uncaught Error: Please set your dev key!
 ```
 
 - When you get the following error, set user profile data with `new FillrController(devKey, profileData)`
 
 ``` 
-Uncaught Error: ProfileData should be configured before fetching mappings!
+Uncaught Error: ProfileData was empty. ProfileData is required for filling the form. 
 ```
 
