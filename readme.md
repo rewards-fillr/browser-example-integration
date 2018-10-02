@@ -38,11 +38,13 @@ const profileData = {
 
 const devKey = '';
 const secretKey = '';
-const fillr = new FillrController(devKey, secretKey, new ProfileDataInterface((mappings) => {
-  mappings.profile = ProfileData;
+const profileDataHandler = new ProfileDataInterface((mappings) => {
+  mappings.profile = ProfileData; // Set your profile data
   fillr.performFill(mappings);
-  console.log(fillr.getApiState().toString());
-}));
+  console.log(fillr.getApiState().toString()) // Check api state
+})
+
+const fillr = new FillrController(devKey, secretKey, profileDataHandler);
 ```
 
 See the sample code for more details.
