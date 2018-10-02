@@ -1,4 +1,4 @@
-import FillrController from "fillr-extension/fillr-controller";
+import FillrController, { ProfileDataInterface } from 'fillr-extension/fillr-controller';
 import ProfileData from './profile-german'; // see full profile example data
 
 // //Setting custom profile data
@@ -8,6 +8,12 @@ import ProfileData from './profile-german'; // see full profile example data
 //   "PersonalDetails.LastName": "Wick",
 // }
 
-const devKey = "ab14bfe7c1b4befbf6e51d5f14fa50e7";  // Set your dev key
+const devKey = '';  // Set your dev key
+const secretKey = ''; // Set your secret key
+const profileDataHandler = new ProfileDataInterface((mappings) => {
+  mappings.profile = ProfileData; // Set your profile data
+  fillr.performFill(mappings);
+  console.log(fillr.getApiState().toString()) // Check api state
+})
 
-new FillrController(devKey, ProfileData);
+const fillr = new FillrController(devKey, secretKey, profileDataHandler);

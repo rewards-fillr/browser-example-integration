@@ -1,6 +1,6 @@
 {
   "name": "browser-sample-integration",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A minimal working sample integration for Browser",
   "main": "index",
   "tpyes": "index",
@@ -14,7 +14,7 @@
   "author": "Fillr",
   "license": "ISC",
   "dependencies": {
-    "fillr-extension": "^0.1.0"
+    "fillr-extension": "^0.1.1"
   },
   "devDependencies": {
     "ts-loader": "^2.3.7",

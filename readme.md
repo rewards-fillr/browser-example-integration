@@ -4,7 +4,7 @@
 
 ### Pre-requisites
 
-- Set dev key and profile data on index.ts
+- Set dev key, secret key, profile listener and profile data on index.ts
 - Run build script (./build.sh)
 
 ### Installation
@@ -22,7 +22,8 @@ $> ./build.sh
 
 ### Usage
 
-- Configure dev key
+- Configure dev key and secret key
+- Implement profile listener
 - Declare user profile data
 
 ```typescript
@@ -35,9 +36,15 @@ const profileData = {
   "PersonalDetails.LastName": "Wick",
   }
 
-const devKey = "ab14bfe7c1b4befbf6e51d5f14fa50e7";  // Set your dev key
+const devKey = '';
+const secretKey = '';
+const profileDataHandler = new ProfileDataInterface((mappings) => {
+  mappings.profile = ProfileData; // Set your profile data
+  fillr.performFill(mappings);
+  console.log(fillr.getApiState().toString()) // Check api state
+})
 
-new FillrController(devKey, profileData);
+const fillr = new FillrController(devKey, secretKey, profileDataHandler);
 ```
 
 See the sample code for more details.
@@ -64,15 +71,27 @@ When you make your own extension, you should configure the following things on `
 ```  
 
 ### Error
-- When you get the following error, set your dev key with `new FillrController(devKey, profileData)`
+- When you get the following log, set your dev key.
 
 ```
-Uncaught Error: Please set your dev key!
+Please set your dev key! The Fillr API will be non-functional until re-initialized with a valid dev key.
 ```
 
-- When you get the following error, set user profile data with `new FillrController(devKey, profileData)`
+- When you get the following log, set your secret key.
+
+```
+Please set your secret key! The Fillr API will be non-functional until re-initialized with a valid secret key.
+```
+
+- When you get the following log, set your profile listener.
+
+```
+Please declare new ProfileDataInterface() with an implementation of onFormDetected() as argument.
+```
+
+- When you get the following log, set user profile data.
 
 ``` 
-Uncaught Error: ProfileData was empty. ProfileData is required for filling the form. 
+ProfileData was empty. ProfileData is required for filling the form.
 ```
 
