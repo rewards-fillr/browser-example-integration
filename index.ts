@@ -1,5 +1,5 @@
 import FillrController, { ProfileDataInterface } from 'fillr-extension/fillr-controller';
-import ProfileData from './profile-german'; // see full profile example data
+import profileData from './profile-data-en-us'; // see full profile example data
 
 // //Setting custom profile data
 // const profileData = {
@@ -11,7 +11,7 @@ import ProfileData from './profile-german'; // see full profile example data
 const devKey = '';  // Set your dev key
 const secretKey = ''; // Set your secret key
 const profileDataHandler = new ProfileDataInterface((mappings) => {
-  mappings.profile = ProfileData; // Set your profile data
+  mappings.profile = profileData; // Set your profile data
   fillr.performFill(mappings);
   console.log(fillr.getApiState().toString()) // Check api state
 })
