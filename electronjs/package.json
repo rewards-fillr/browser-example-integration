@@ -1,0 +1,24 @@
+{
+  "name": "electron-fillr-integration",
+  "version": "0.1.0",
+  "description": "A minimal Electron fillr application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fillr/browser-example-integration.git"
+  },
+  "keywords": [
+    "electron-fillr-integration"
+  ],
+  "author": "Fillr",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^5.0.0"
+  },
+  "dependencies": {
+    "fillr-extension": "^0.1.1"
+  }
+}
