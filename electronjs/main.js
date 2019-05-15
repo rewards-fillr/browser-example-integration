@@ -1,6 +1,5 @@
-const {app, BrowserWindow, session} = require('electron')
+const {app, BrowserWindow} = require('electron')
 const path = require('path');
-const fs = require('fs');
 
 let mainWindow
 
@@ -9,8 +8,12 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
-      webSecurity: false
+      nodeIntegration: false,
+      nodeIntegrationInSubFrames: true,
+      preload: path.join(__dirname, 'fillr.js'),
+      contextIsolation: false,
+      webSecurity: false,
+      allowRunningInsecureContent: true,
     }
   })
 
@@ -20,9 +23,13 @@ function createWindow () {
     mainWindow = null
   })
 
-  mainWindow.webContents.once('did-navigate', () => {
-    const widgetString = fs.readFileSync(path.join(__dirname, 'fillr.js'), "utf8");
-    mainWindow.webContents.executeJavaScript(widgetString)
+  mainWindow.webContents.session.webRequest.onHeadersReceived(function(details, callback) {
+    delete details.responseHeaders['content-security-policy']
+    const response = {
+      cancel: false,
+      responseHeaders: details.responseHeaders
+    }
+    callback(response)
   });
 }
 
