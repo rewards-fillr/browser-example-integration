@@ -1,9 +1,13 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow} = require('electron');
 const path = require('path');
 
-let mainWindow
+let mainWindow;
 
-function createWindow () {
+app.on('window-all-closed', function() {
+  app.quit();
+});
+
+app.on('ready', function() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -15,14 +19,12 @@ function createWindow () {
       webSecurity: false,
       allowRunningInsecureContent: true,
     }
-  })
-
-  mainWindow.loadURL('https://www.fillr.com/demo')
-
+  });
+  mainWindow.loadURL('file://' + __dirname + '/main.html');
+  mainWindow.openDevTools();
   mainWindow.on('closed', function () {
     mainWindow = null
   })
-
   mainWindow.webContents.session.webRequest.onHeadersReceived(function(details, callback) {
     delete details.responseHeaders['content-security-policy']
     const response = {
@@ -31,9 +33,7 @@ function createWindow () {
     }
     callback(response)
   });
-}
-
-app.on('ready', createWindow)
+});
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
