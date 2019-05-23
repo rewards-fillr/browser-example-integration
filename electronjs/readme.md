@@ -54,6 +54,7 @@ Check this [url](https://github.com/Fillr/browser-example-integration#error)
 ### Packaging
 
 Build a electron app for `macOS`
+The output directory is in `./dist/`
 
 ```
 npm build
