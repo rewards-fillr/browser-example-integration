@@ -5,8 +5,8 @@ let mainWindow
 
 function createWindow () {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1500,
+    height: 1000,
     webPreferences: {
       nodeIntegration: false,
       nodeIntegrationInSubFrames: true,
@@ -17,7 +17,7 @@ function createWindow () {
     }
   })
 
-  mainWindow.loadURL('https://www.fillr.com/demo')
+  mainWindow.loadURL('https://www.google.com')
 
   mainWindow.on('closed', function () {
     mainWindow = null
