@@ -50,3 +50,11 @@ See the sample code for more details.
 
 ### Error
 Check this [url](https://github.com/Fillr/browser-example-integration#error)
+
+### Packaging
+
+Build a electron app for `macOS`
+
+```
+npm build
+```
