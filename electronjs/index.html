@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Electron Example Integration</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        webview {
+            width: 100%;
+            height: 1000px;
+        }
+    </style>
+  </head>
+  <body>
+    <webview src="https://www.google.com/" preload="./fillr.js" autosize nodeIntegrationInSubFrames allowRunningInsecureContent disablewebsecurity></webview>
+  </body>
+  <script src="webview.js"></script>
+</html>
