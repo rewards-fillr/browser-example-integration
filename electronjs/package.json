@@ -1,6 +1,6 @@
 {
   "name": "electron-fillr-integration",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A minimal Electron fillr application",
   "main": "main.js",
   "scripts": {
