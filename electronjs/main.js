@@ -9,19 +9,27 @@ app.on('window-all-closed', function() {
 
 app.on('ready', function() {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1500,
+    height: 1000,
     webPreferences: {
+      // We highly recommend the integration with `BrowserView` instead of `webview` because of the following issues
+      // https://github.com/electron/electron/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+webview
+      // `BrowserView`is meant to be an alternative to the webview tag
+      webviewTag: true,
       nodeIntegration: false,
       nodeIntegrationInSubFrames: true,
-      preload: path.join(__dirname, 'fillr.js'),
+      // This is only for using `BrowserWindow` instead of webview
+      // preload: path.join(__dirname, 'fillr.js'),
       contextIsolation: false,
       webSecurity: false,
       allowRunningInsecureContent: true,
     }
-  });
-  mainWindow.loadURL('file://' + __dirname + '/main.html');
-  mainWindow.openDevTools();
+
+  })
+  
+  // mainWindow.loadURL('https://www.google.com')
+  mainWindow.loadURL(`file://${__dirname}/index.html`)
+
   mainWindow.on('closed', function () {
     mainWindow = null
   })

@@ -14,7 +14,7 @@
   "author": "Fillr",
   "license": "ISC",
   "dependencies": {
-    "fillr-extension": "^0.1.1"
+    "fillr-extension": "^0.1.2"
   },
   "devDependencies": {
     "ts-loader": "^2.3.7",
