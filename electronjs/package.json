@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "build --mac"
+    "build:mac": "build --mac",
+    "build:win": "build --win --x64"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,13 @@
     },
     "dmg": {
       "title": "electron-fillr-sample",
+      "icon": "./resources/icon.png"
+    },
+    "win": {
+      "target": [
+        "zip",
+        "nsis"
+      ],
       "icon": "./resources/icon.png"
     },
     "nsis": {
