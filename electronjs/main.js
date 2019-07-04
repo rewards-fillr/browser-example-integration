@@ -28,7 +28,7 @@ app.on('ready', function() {
   })
   
   // mainWindow.loadURL('https://www.google.com')
-  mainWindow.loadURL(`file://${__dirname}/index.html`)
+  mainWindow.loadURL(`file://${__dirname}/main.html`)
 
   mainWindow.on('closed', function () {
     mainWindow = null
