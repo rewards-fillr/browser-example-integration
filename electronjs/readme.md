@@ -26,24 +26,24 @@ $> npm start
 - Declare user profile data
 
 ```javascript
-const FillrController = require('fillr-extension/fillr-controller');
-const { ProfileDataInterface } = FillrController;
-
-const ProfileData = {
-  "ContactDetails.Emails.Email.Address":"jamesw999@gmail.com",
-  "PersonalDetails.FirstName":"John",
-  "PersonalDetails.LastName":"Wick",
-}
-
-const devKey = 'YOUR_OWN_DEV_KEY';
-const secretKey = 'YOUR_OWN_SECRET_KEY';
+import FillrController from "@fillr_letspop/desktop-autofill";
+// https://github.com/Fillr/browser-example-integration/blob/master/profile-data-en-us.ts
+// import ProfileData from './profile-data-en-us';
+ 
+const profileData = {
+  "PersonalDetails.FirstName": "John",
+  "PersonalDetails.Honorific": "Mr.",
+  "PersonalDetails.LastName": "Wick",
+  }
+ 
+const devKey = '';
+const secretKey = '';
 const profileDataHandler = new ProfileDataInterface((mappings) => {
-  mappings.profile = ProfileData;
+  mappings.profile = ProfileData; 
   fillr.performFill(mappings);
-  console.log(fillr.getApiState().toString())
 })
-
-const fillr = new FillrController.default(devKey, secretKey, profileDataHandler);
+ 
+const fillr = new FillrController(devKey, secretKey, profileDataHandler);
 ```
 
 See the sample code for more details.
