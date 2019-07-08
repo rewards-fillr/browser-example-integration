@@ -1,6 +1,6 @@
 {
   "name": "browser-sample-integration",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "description": "A minimal working sample integration for Browser",
   "main": "index",
   "tpyes": "index",
@@ -12,9 +12,10 @@
     "url": "git+https://github.com/Fillr/browser-example-integration.git"
   },
   "author": "Fillr",
-  "license": "ISC",
+  "license": "Copyright Pop Tech",
   "dependencies": {
-    "fillr-extension": "^0.1.2"
+    "@fillr_letspop/desktop-autofill": "^0.1.4",
+    "@fillr_letspop/cart-scraper": "^1.3.37"
   },
   "devDependencies": {
     "ts-loader": "^2.3.7",
