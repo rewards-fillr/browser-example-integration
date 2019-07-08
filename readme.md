@@ -67,7 +67,7 @@ window.FillrCartInformationExtractionInterface.setDevKey('YOUR_OWN_DEV_KEY');
 ```javascript
 const onCartDetected = function(ev) {
   const cartInfo = ev.detail;
-  console.log(JSON.stringify(cartInfo));
+  // Do something with cartInfo. See the following example cart information json
 }
 document.addEventListener('fillr:cart:detected', onCartDetected);
 ```

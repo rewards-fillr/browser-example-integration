@@ -23,7 +23,7 @@ const interval = setInterval(() => {
     const onCartDetected = function(ev) {
 
       const cartInfo = ev.detail;
-      // Do something with cartInfo. See the exampe cart information json on readme
+      // Do something with cartInfo. See the example cart information json on readme
     }
     document.addEventListener('fillr:cart:detected', onCartDetected);
     window.FillrCartInformationExtractionInterface.start();
