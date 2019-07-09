@@ -1,7 +1,7 @@
 import FillrController, { ProfileDataInterface } from 'fillr-extension/fillr-controller';
 import profileData from './profile-data-en-us'; // see full profile example data
 
-// //Setting custom profile data
+// Setting custom profile data
 // const profileData = {
 //   "PersonalDetails.FirstName": "John",
 //   "PersonalDetails.Honorific": "Mr.",
