@@ -9,6 +9,7 @@ rm -rf dist
 npm install ts-loader tslint tslint-loader typescript typings uglifyjs-webpack-plugin webpack --save-dev
 
 npm i @fillr_letspop/desktop-autofill
+npm i @fillr_letspop/cart-scraper
 
 webpack
 

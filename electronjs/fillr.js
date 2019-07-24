@@ -19,13 +19,13 @@ const interval = setInterval(() => {
     const fillr = new FillrController.default(devKey, secretKey, profileDataHandler);
 
     const FillrScraper = require('@fillr_letspop/cart-scraper')
-    window.FillrCartInformationExtractionInterface.setDevKey(devKey);
+    FillrScraper.setDevKey(devKey);
     const onCartDetected = function(ev) {
 
       const cartInfo = ev.detail;
       // Do something with cartInfo. See the example cart information json on readme
     }
     document.addEventListener('fillr:cart:detected', onCartDetected);
-    window.FillrCartInformationExtractionInterface.start();
+    FillrScraper.start();
   }
 }, 1000);
