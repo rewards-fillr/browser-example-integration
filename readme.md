@@ -9,6 +9,8 @@
 
 ### Installation
 
+- To download `@fillr_letspop/cart-scraper` for the private package, you need to get permissions added to npmjs. Please contact product@fillr.com
+
 ```bash
 $> npm i @fillr_letspop/desktop-autofill
 $> npm i @fillr_letspop/cart-scraper
@@ -57,10 +59,10 @@ See the sample code for more details.
 const FillrScraper = require('@fillr_letspop/cart-scraper')
 ```
 
-- Set dev key before calling `FillrCartInformationExtractionInterface.start()`
+- Set dev key before calling `FillrScraper.start()`
 
 ```javascript
-window.FillrCartInformationExtractionInterface.setDevKey('YOUR_OWN_DEV_KEY');
+FillrScraper.setDevKey('YOUR_OWN_DEV_KEY');
 ```
 
 - Define the event listener `onCartDetected()` 
@@ -74,10 +76,10 @@ document.addEventListener('fillr:cart:detected', onCartDetected);
 
 - start the cart information extraction
 ```javascript
-window.FillrCartInformationExtractionInterface.start(); 
+FillrScraper.start(); 
 ```
 
-### Exampe Cart Information JSON
+### Example Cart Information JSON
 
 ```json
 {
@@ -98,7 +100,7 @@ The `cart_total` value type of cart information represents as the number to avoi
 
 See the sample extension under `dist/chrome` after running build script. You can check the basic functionality of `fillr-extension` library on sample extension. After `load upacked`, all the page which has the form will be filled automatically.
 
-When you make your own extension, you should configure the following things on `manifest.json`. `all_frames` should be `true` and `js` includes the files which imports `fillr-extension/fillr-controller`. This will enable all the iframe which has form to be filled.
+When you make your own extension, you should configure the following things on `manifest.json`. `all_frames` should be `true` and `js` includes the files which imports `@fillr_letspop/desktop-autofill`. This will enable all the iframe which has form to be filled.
 
 ```
   "content_scripts": [

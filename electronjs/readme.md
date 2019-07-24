@@ -57,13 +57,13 @@ See the sample code for more details.
 const FillrScraper = require('@fillr_letspop/cart-scraper')
 ```
 
-- Set dev key before calling `FillrCartInformationExtractionInterface.start()`
+- Set dev key before calling `FillrScraper.start()`
 
 ```javascript
-window.FillrCartInformationExtractionInterface.setDevKey('YOUR_OWN_DEV_KEY');
+FillrScraper.setDevKey('YOUR_OWN_DEV_KEY');
 ```
 
-- Define the event listener `onCartDetected()` 
+- Define the event listener `onCartDetected()`
 ```javascript
 const onCartDetected = function(ev) {
   const cartInfo = ev.detail;
@@ -74,10 +74,10 @@ document.addEventListener('fillr:cart:detected', onCartDetected);
 
 - start the cart information extraction
 ```javascript
-window.FillrCartInformationExtractionInterface.start(); 
+FillrScraper.start(); 
 ```
 
-### Exampe Cart Information JSON
+### Example Cart Information JSON
 
 ```json
 {
