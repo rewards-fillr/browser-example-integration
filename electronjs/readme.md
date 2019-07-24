@@ -77,7 +77,7 @@ document.addEventListener('fillr:cart:detected', onCartDetected);
 window.FillrCartInformationExtractionInterface.start(); 
 ```
 
-### Exampe Cart Information JSON
+### Example Cart Information JSON
 
 ```json
 {

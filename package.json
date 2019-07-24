@@ -14,12 +14,12 @@
   "author": "Fillr",
   "license": "Copyright Pop Tech",
   "dependencies": {
-    "@fillr_letspop/desktop-autofill": "^0.1.4",
-    "@fillr_letspop/cart-scraper": "^1.3.37"
+    "@fillr_letspop/cart-scraper": "^1.3.37",
+    "@fillr_letspop/desktop-autofill": "^0.1.4"
   },
   "devDependencies": {
     "ts-loader": "^2.3.7",
-    "tslint": "^5.16.0",
+    "tslint": "^5.18.0",
     "tslint-loader": "^3.6.0",
     "typescript": "^2.9.2",
     "typings": "^2.1.1",

@@ -8,7 +8,7 @@ rm -rf dist
 
 npm install ts-loader tslint tslint-loader typescript typings uglifyjs-webpack-plugin webpack --save-dev
 
-npm install fillr-extension --registry https://api.bintray.com/npm/fillr/npm
+npm i @fillr_letspop/desktop-autofill
 
 webpack
 

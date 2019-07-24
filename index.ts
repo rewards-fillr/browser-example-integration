@@ -1,4 +1,4 @@
-import FillrController, { ProfileDataInterface } from 'fillr-extension/fillr-controller';
+import FillrController, { ProfileDataInterface } from '@fillr_letspop/desktop-autofill';
 import profileData from './profile-data-en-us'; // see full profile example data
 
 // Setting custom profile data
