@@ -63,7 +63,7 @@ const FillrScraper = require('@fillr_letspop/cart-scraper')
 window.FillrCartInformationExtractionInterface.setDevKey('YOUR_OWN_DEV_KEY');
 ```
 
-- Define the event listener `onCartDetected()` 
+- Define the event listener `onCartDetected()`
 ```javascript
 const onCartDetected = function(ev) {
   const cartInfo = ev.detail;

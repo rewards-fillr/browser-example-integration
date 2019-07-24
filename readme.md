@@ -9,6 +9,8 @@
 
 ### Installation
 
+- To download `@fillr_letspop/cart-scraper` for the private package, you need to get permissions added to npmjs. Please contact product@fillr.com
+
 ```bash
 $> npm i @fillr_letspop/desktop-autofill
 $> npm i @fillr_letspop/cart-scraper
