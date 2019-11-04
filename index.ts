@@ -9,20 +9,33 @@ import * as FillrScraper from '@fillr_letspop/cart-scraper';
 //   "PersonalDetails.LastName": "Wick",
 // }
 
-const devKey = '';  // Set your dev key
-const secretKey = ''; // Set your secret key
-const profileDataHandler = new ProfileDataInterface((mappings) => {
-  mappings.profile = profileData; // Set your profile data
-  fillr.performFill(mappings);
-  console.log(fillr.getApiState().toString()) // Check api state
-})
+let intervalCount = 0;
 
-const fillr = new FillrController(devKey, secretKey, profileDataHandler);
+// Waiting for document readystate to be complete...
+const interval = setInterval(() => {
+  intervalCount++;
+  if (document && document.readyState === "complete" || intervalCount == 10) {
+    clearInterval(interval);
 
-FillrScraper.setDevKey(devKey);
-const onCartDetected = function(ev) {
-  // const cartInfo = ev.detail;
-  // Do something with cartInfo. See the example cart information json on readme
-}
-document.addEventListener('fillr:cart:detected', onCartDetected);
-FillrScraper.start();
+    const devKey = '';  // Set your dev key
+    const secretKey = ''; // Set your secret key
+
+    // Autofill setup
+    const profileDataHandler = new ProfileDataInterface((mappings) => {
+      mappings.profile = profileData; // Set your profile data
+      fillr.performFill(mappings);
+      console.log(fillr.getApiState().toString()) // Check api state
+    })
+
+    const fillr = new FillrController(devKey, secretKey, profileDataHandler);
+
+    // Cart scraper setup
+    FillrScraper.setDevKey(devKey);
+    const onCartDetected = function(ev) {
+      // const cartInfo = ev.detail;
+      // Do something with cartInfo. See the example cart information json on readme
+    }
+    document.addEventListener('fillr:cart:detected', onCartDetected);
+    FillrScraper.start();
+  }
+}, 1000);

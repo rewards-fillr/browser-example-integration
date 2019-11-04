@@ -3,7 +3,7 @@
   "name": "Fillr's sample extension",
   "short_name": "Fillr's sample extension",
   "description": "Fillr's sample extensions using library",
-  "version": "0.1.0",
+  "version": "0.1.8",
   "background": {
     "scripts": [
       "sample-index-bundled.js"
@@ -27,6 +27,7 @@
         "http://*/*",
         "https://*/*"
       ],
+      "match_about_blank": true,
       "all_frames": true,
       "js": [
         "sample-index-bundled.js"
