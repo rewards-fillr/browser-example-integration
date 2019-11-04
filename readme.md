@@ -100,7 +100,7 @@ The `cart_total` value type of cart information represents as the number to avoi
 
 See the sample extension under `dist/chrome` after running build script. You can check the basic functionality of `fillr-extension` library on sample extension. After `load upacked`, all the page which has the form will be filled automatically.
 
-When you make your own extension, you should configure the following things on `manifest.json`. `all_frames` should be `true` and `js` includes the files which imports `@fillr_letspop/desktop-autofill`. This will enable all the iframe which has form to be filled.
+When you make your own extension, you should configure the following things on `manifest.json`. `all_frames` should be `true` and `js` includes the files which imports `@fillr_letspop/desktop-autofill`. This will enable all the iframe which has form to be filled. Also, `match_about_blank` should be `true` to inject the script in iframe having no url.
 
 ```
   "content_scripts": [
@@ -110,6 +110,7 @@ When you make your own extension, you should configure the following things on `
         "https://*/*"
       ],
       "all_frames": true,
+      "match_about_blank": true,
       "js": [
         "sample-index-bundled.js"
       ]
