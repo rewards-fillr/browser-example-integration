@@ -5,11 +5,21 @@
 ### Pre-requisites
 
 - Set dev key, secret key, profile listener and profile data on index.ts
-- Run build script (./build.sh)
+- Setup [npm authentication tokens](https://docs.npmjs.com/using-private-packages-in-a-ci-cd-workflow)
+- Run [build script](./build.sh)
 
 ### Installation
 
-- To download `@fillr_letspop/cart-scraper` for the private package, you need to get permissions added to npmjs. Please contact product@fillr.com
+- To install private package for `@fillr_letspop/desktop-autofill` and `@fillr_letspop/cart-scraper`, 
+you will first authenticate with npm credentials. Please contact product@fillr.com
+
+```bash
+npm login
+```
+
+Once logged in or setup npm tokens, you can npm install private packages from your npm account.
+
+Private packages can only be downloaded and installed by those who have been granted read access to the package. Since private packages are always scoped, you must reference the scope name during installation:
 
 ```bash
 $> npm i @fillr_letspop/desktop-autofill
@@ -40,8 +50,8 @@ const profileData = {
   "PersonalDetails.LastName": "Wick",
   }
  
-const devKey = '';
-const secretKey = '';
+const devKey = 'YOUR_FILLR_DEV_KEY';
+const secretKey = 'YOUR_FILLR_SECRET_KEY';
 const profileDataHandler = new ProfileDataInterface((mappings) => {
   mappings.profile = ProfileData; 
   fillr.performFill(mappings);
@@ -62,7 +72,7 @@ const FillrScraper = require('@fillr_letspop/cart-scraper')
 - Set dev key before calling `FillrScraper.start()`
 
 ```javascript
-FillrScraper.setDevKey('YOUR_OWN_DEV_KEY');
+FillrScraper.setDevKey('YOUR_FILLR_DEV_KEY');
 ```
 
 - Define the event listener `onCartDetected()` 
