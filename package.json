@@ -1,6 +1,6 @@
 {
   "name": "browser-sample-integration",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "A minimal working sample integration for Browser",
   "main": "index",
   "tpyes": "index",
