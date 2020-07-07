@@ -18,7 +18,7 @@
   "author": "Fillr",
   "license": "Copyright Pop Tech",
   "devDependencies": {
-    "electron": "^5.0.11",
+    "electron": "^9.1.0",
     "electron-builder": "^20.44.4"
   },
   "dependencies": {
