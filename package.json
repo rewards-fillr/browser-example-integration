@@ -14,16 +14,14 @@
   "author": "Fillr",
   "license": "Copyright Pop Tech",
   "dependencies": {
-    "@fillr_letspop/cart-scraper": "^1.3.42",
-    "@fillr_letspop/desktop-autofill": "^0.1.8"
+    "@fillr_letspop/cart-scraper": "^1.3.67",
+    "@fillr_letspop/desktop-autofill": "^0.1.13"
   },
   "devDependencies": {
-    "ts-loader": "^2.3.7",
-    "tslint": "^5.20.0",
-    "tslint-loader": "^3.6.0",
-    "typescript": "^2.9.2",
-    "typings": "^2.1.1",
-    "uglifyjs-webpack-plugin": "^1.3.0",
-    "webpack": "^2.7.0"
+    "ts-loader": "^8.0.1",
+    "tslint": "^6.1.2",
+    "tslint-loader": "^3.5.4",
+    "typescript": "^3.9.7",
+    "webpack": "^4.43.0"
   }
 }
