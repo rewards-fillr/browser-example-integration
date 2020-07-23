@@ -11,7 +11,7 @@ npm install ts-loader tslint tslint-loader typescript typings uglifyjs-webpack-p
 npm i @fillr_letspop/desktop-autofill
 npm i @fillr_letspop/cart-scraper
 
-webpack
+webpack -p --display-modules
 
 mkdir dist/chrome
 cp -R assets/* dist/chrome/ # copy chrome extension assets into place
