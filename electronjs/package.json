@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@fillr_letspop/cart-scraper": "^1.3.67",
-    "@fillr_letspop/desktop-autofill": "^0.1.8"
+    "@fillr_letspop/desktop-autofill": "^0.1.14"
   },
   "build": {
     "productName": "Fillr-Electron",
