@@ -27,5 +27,9 @@ module.exports = {
       { test: /\.tsx?$/, loader: 'ts-loader' }
     ]
   },
+  performance: {
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  },
   devtool: "sourcemap"
 }

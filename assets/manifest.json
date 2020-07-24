@@ -25,7 +25,8 @@
     {
       "matches": [
         "http://*/*",
-        "https://*/*"
+        "https://*/*",
+        "file:///*/*"
       ],
       "match_about_blank": true,
       "all_frames": true,

@@ -14,7 +14,7 @@ let intervalCount = 0;
 // Waiting for document readystate to be complete...
 const interval = setInterval(() => {
   intervalCount++;
-  if (document && document.readyState === "complete" || intervalCount == 10) {
+  if (document && document.readyState === "complete" || intervalCount === 10) {
     clearInterval(interval);
 
     const devKey = '';  // Set your dev key
@@ -24,14 +24,14 @@ const interval = setInterval(() => {
     const profileDataHandler = new ProfileDataInterface((mappings) => {
       mappings.profile = profileData; // Set your profile data
       fillr.performFill(mappings);
-      console.log(fillr.getApiState().toString()) // Check api state
+      // console.log(fillr.getApiState().toString()) // Check api state
     })
 
     const fillr = new FillrController(devKey, secretKey, profileDataHandler);
 
     // Cart scraper setup
     FillrScraper.setDevKey(devKey);
-    const onCartDetected = function(ev) {
+    const onCartDetected = (ev) => {
       // const cartInfo = ev.detail;
       // Do something with cartInfo. See the example cart information json on readme
     }
