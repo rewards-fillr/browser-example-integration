@@ -1,8 +1,8 @@
-import FillrController, { ProfileDataInterface } from '@fillr_letspop/desktop-autofill';
-import profileData from './profile-data-en-us'; // see full profile example data
+import FillrController from '@fillr_letspop/desktop-autofill';
+import profileData from './profile-data-en-au'; // see full profile example data
 import * as FillrScraper from '@fillr_letspop/cart-scraper';
 
-// Setting custom profile data
+// Set custom profile data
 // const profileData = {
 //   "PersonalDetails.FirstName": "John",
 //   "PersonalDetails.Honorific": "Mr.",
@@ -21,18 +21,29 @@ const interval = setInterval(() => {
     const secretKey = ''; // Set your secret key
 
     // Autofill setup
-    const profileDataHandler = new ProfileDataInterface((mappings) => {
-      mappings.profile = profileData; // Set your profile data
-      fillr.performFill(mappings);
-      // console.log(fillr.getApiState().toString()) // Check api state
-    })
+    let mappings
 
-    const fillr = new FillrController(devKey, secretKey, profileDataHandler);
+    // Should add this listner on top frame window only
+    if(window.self === window.top) {
+      const onFormDetected = (event:any) => {
+        // Parse mappings data
+        mappings = JSON.parse(event.detail);
+
+        // Set your profile data
+        mappings.profile = profileData;
+
+        // Fill the fields with the profile data
+        fillr.performFill(mappings);
+      }
+      document.addEventListener('fillr:form:detected', onFormDetected);
+    }
+
+    const fillr = new FillrController(devKey, secretKey);
 
     // Cart scraper setup
     FillrScraper.setDevKey(devKey);
-    const onCartDetected = (ev) => {
-      // const cartInfo = ev.detail;
+    const onCartDetected = (event:any) => {
+      // const cartInfo = event.detail;
       // Do something with cartInfo. See the example cart information json on readme
     }
     document.addEventListener('fillr:cart:detected', onCartDetected);

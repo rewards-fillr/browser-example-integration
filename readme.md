@@ -35,14 +35,12 @@ $> ./build.sh
 
 ## Usage for Desktop Autofill
 
-- Configure dev key and secret key
-- Implement profile listener
-- Declare user profile data
+- Configure a dev key and a secret key
+- Add a event listener for `fillr:form:detected`
+- Declare [user's profile data](https://github.com/Fillr/browser-example-integration/blob/master/profile-data-en-us.ts)
 
 ```javascript
 import FillrController from "@fillr_letspop/desktop-autofill";
-// https://github.com/Fillr/browser-example-integration/blob/master/profile-data-en-us.ts
-// import ProfileData from './profile-data-en-us';
  
 const profileData = {
   "PersonalDetails.FirstName": "John",
@@ -50,14 +48,20 @@ const profileData = {
   "PersonalDetails.LastName": "Wick",
   }
  
-const devKey = 'YOUR_FILLR_DEV_KEY';
-const secretKey = 'YOUR_FILLR_SECRET_KEY';
-const profileDataHandler = new ProfileDataInterface((mappings) => {
-  mappings.profile = ProfileData; 
-  fillr.performFill(mappings);
-})
- 
-const fillr = new FillrController(devKey, secretKey, profileDataHandler);
+const devKey = 'YOUR_FILLR_DEV_KEY'
+const secretKey = 'YOUR_FILLR_SECRET_KEY'
+let mappings
+
+if(window.self == window.top) {
+  const onFormDetected = (event:any) => {
+    mappings = JSON.parse(event.detail)
+    mappings.profile = profileData
+    fillr.performFill(mappings)
+  }
+  document.addEventListener('fillr:form:detected', onFormDetected)
+}
+
+const fillr = new FillrController(devKey, secretKey)
 ```
 
 See the sample code for more details.
@@ -77,8 +81,8 @@ FillrScraper.setDevKey('YOUR_FILLR_DEV_KEY');
 
 - Define the event listener `onCartDetected()` 
 ```javascript
-const onCartDetected = function(ev) {
-  const cartInfo = ev.detail;
+const onCartDetected = function(event:any) {
+  const cartInfo = event.detail;
   // Do something with cartInfo. See the following example cart information json
 }
 document.addEventListener('fillr:cart:detected', onCartDetected);
@@ -132,7 +136,7 @@ When you make your own extension, you should configure the following things in y
   ],
 ```  
 
-### Error
+### Error message for Desktop autofill
 - When you get the following log, set your dev key.
 
 ```
@@ -143,12 +147,6 @@ Please set your dev key! The Fillr API will be non-functional until re-initializ
 
 ```
 Please set your secret key! The Fillr API will be non-functional until re-initialized with a valid secret key.
-```
-
-- When you get the following log, set your profile listener.
-
-```
-Please declare new ProfileDataInterface() with an implementation of onFormDetected() as argument.
 ```
 
 - When you get the following log, set user profile data.
