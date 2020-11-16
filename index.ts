@@ -21,19 +21,26 @@ const interval = setInterval(() => {
     const secretKey = ''; // Set your secret key
 
     // Autofill setup
-    let mappings
-
     // Should add this listner on top frame window only
     if(window.self === window.top) {
+      const userPrompt = (mappings:any) => {
+        // you can perform fill after the user grants permission
+        // or call some other function, invoke a promise, etc.
+        if (confirm('Do you want to autofill this form?')) {
+          mappings.profile = profileData;
+          fillr.performFill(mappings);
+        }
+      }
+
       const onFormDetected = (event:any) => {
         // Parse mappings data
-        mappings = JSON.parse(event.detail);
+        const mappings = JSON.parse(event.detail);
 
-        // Set your profile data
-        mappings.profile = profileData;
-
-        // Fill the fields with the profile data
-        fillr.performFill(mappings);
+        // you can call this part after the user grants permission
+        if (mappings.creditCardFields || mappings.billingAddressFields) {
+          mappings.profile = profileData
+          userPrompt(mappings)
+        }
       }
       document.addEventListener('fillr:form:detected', onFormDetected);
     }

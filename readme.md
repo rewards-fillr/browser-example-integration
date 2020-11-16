@@ -39,7 +39,7 @@ $> ./build.sh
 - Add a event listener for `fillr:form:detected`
 - Declare [user's profile data](https://github.com/Fillr/browser-example-integration/blob/master/profile-data-en-us.ts)
 
-```javascript
+```typescript
 import FillrController from "@fillr_letspop/desktop-autofill";
  
 const profileData = {
@@ -62,6 +62,28 @@ if(window.self == window.top) {
 }
 
 const fillr = new FillrController(devKey, secretKey)
+```
+
+You can check `creditCardFields` or `billingAddressFields` of mapping result without triggering a fill, which tells the page has credit card form. 
+Note that fields will not be autofilled until fillr.performFill() is called. You can avoid triggering a fill prematurely by deferring this call until positive that autofill should proceed
+
+```typescript
+const userPrompt = (mappings:any) => {
+  // you can perform fill after the user grants permission
+  if (confirm('Do you want to autofill this form?')) { //or call some other function, invoke a promise, etc.
+    mappings.profile = profileData;
+    fillr.performFill(mappings);
+  }
+}
+
+const onFormDetected = (mappings:any) => {
+  const mappings = JSON.parse(event.detail)
+  // you can call this part after the user grants permission
+  if (mappings.creditCardFields || mappings.billingAddressFields) {
+    mappings.profile = profileData
+    userPrompt(mappings)
+  }
+}
 ```
 
 See the sample code for more details.
