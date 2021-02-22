@@ -46,5 +46,5 @@
     "icon.png",
     "popup.html"
   ],
-  "content_security_policy": "script-src 'self' https://api.fillr.com/; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://api.fillr.com; object-src 'self'"
 }

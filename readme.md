@@ -35,14 +35,12 @@ $> ./build.sh
 
 ## Usage for Desktop Autofill
 
-- Configure dev key and secret key
-- Implement profile listener
-- Declare user profile data
+- Configure a dev key and a secret key
+- Add a event listener for `fillr:form:detected`
+- Declare [user's profile data](https://github.com/Fillr/browser-example-integration/blob/master/profile-data-en-us.ts)
 
-```javascript
+```typescript
 import FillrController from "@fillr_letspop/desktop-autofill";
-// https://github.com/Fillr/browser-example-integration/blob/master/profile-data-en-us.ts
-// import ProfileData from './profile-data-en-us';
  
 const profileData = {
   "PersonalDetails.FirstName": "John",
@@ -50,14 +48,42 @@ const profileData = {
   "PersonalDetails.LastName": "Wick",
   }
  
-const devKey = 'YOUR_FILLR_DEV_KEY';
-const secretKey = 'YOUR_FILLR_SECRET_KEY';
-const profileDataHandler = new ProfileDataInterface((mappings) => {
-  mappings.profile = ProfileData; 
-  fillr.performFill(mappings);
-})
- 
-const fillr = new FillrController(devKey, secretKey, profileDataHandler);
+const devKey = 'YOUR_FILLR_DEV_KEY'
+const secretKey = 'YOUR_FILLR_SECRET_KEY'
+let mappings
+
+if(window.self == window.top) {
+  const onFormDetected = (event:any) => {
+    mappings = JSON.parse(event.detail)
+    mappings.profile = profileData
+    fillr.performFill(mappings)
+  }
+  document.addEventListener('fillr:form:detected', onFormDetected)
+}
+
+const fillr = new FillrController(devKey, secretKey)
+```
+
+You can check `creditCardFields` or `billingAddressFields` of mapping result without triggering a fill, which tells the page has credit card form. 
+Note that fields will not be autofilled until fillr.performFill() is called. You can avoid triggering a fill prematurely by deferring this call until positive that autofill should proceed
+
+```typescript
+const userPrompt = (mappings:any) => {
+  // you can perform fill after the user grants permission
+  if (confirm('Do you want to autofill this form?')) { //or call some other function, invoke a promise, etc.
+    mappings.profile = profileData;
+    fillr.performFill(mappings);
+  }
+}
+
+const onFormDetected = (mappings:any) => {
+  const mappings = JSON.parse(event.detail)
+  // you can call this part after the user grants permission
+  if (mappings.creditCardFields || mappings.billingAddressFields) {
+    mappings.profile = profileData
+    userPrompt(mappings)
+  }
+}
 ```
 
 See the sample code for more details.
@@ -77,8 +103,8 @@ FillrScraper.setDevKey('YOUR_FILLR_DEV_KEY');
 
 - Define the event listener `onCartDetected()` 
 ```javascript
-const onCartDetected = function(ev) {
-  const cartInfo = ev.detail;
+const onCartDetected = function(event:any) {
+  const cartInfo = event.detail;
   // Do something with cartInfo. See the following example cart information json
 }
 document.addEventListener('fillr:cart:detected', onCartDetected);
@@ -132,7 +158,7 @@ When you make your own extension, you should configure the following things in y
   ],
 ```  
 
-### Error
+### Error message for Desktop autofill
 - When you get the following log, set your dev key.
 
 ```
@@ -143,12 +169,6 @@ Please set your dev key! The Fillr API will be non-functional until re-initializ
 
 ```
 Please set your secret key! The Fillr API will be non-functional until re-initialized with a valid secret key.
-```
-
-- When you get the following log, set your profile listener.
-
-```
-Please declare new ProfileDataInterface() with an implementation of onFormDetected() as argument.
 ```
 
 - When you get the following log, set user profile data.
